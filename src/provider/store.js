@@ -3,7 +3,6 @@ import weatherSlice  from '../features/getWeatherSlice'
 
 export const store = configureStore({
     reducer: {
-        weatherRedux  : weatherSlice,
-
-    },
-  })
+        weather: weatherSlice,
+  },
+})

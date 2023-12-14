@@ -1,33 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import { getWeatherData } from "../util/getWeather";
-export const getPrognos = createAsyncThunk("/getPrognos", getWeatherData);
+
+export const getWeather = createAsyncThunk("/getWeather", getWeatherData);
 
 const initialState = {
   weather: {},
   loading: false,
-  error: "",
 };
 
 export const weatherSlice = createSlice({
-  name: "weatherRedux",
+  name: "weather",
   initialState,
- 
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPrognos.fulfilled, (state, action) => {
-        state.weather = action.payload;
-        state.loading = false;
-      })
-      .addCase(getPrognos.pending, (state, action) => {
-        
+      .addCase(getWeather.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(getPrognos.rejected, (state, action) => {
+      .addCase(getWeather.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.weather = action.payload;
+      })
+      .addCase(getWeather.rejected, (state, action) => {
+        state.loading = false;
       });
   },
 });
+
+
 
 export default weatherSlice.reducer;
