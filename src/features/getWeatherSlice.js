@@ -5,7 +5,8 @@ export const getWeather = createAsyncThunk("/getWeather", getWeatherData);
 
 const initialState = {
   weather: {},
-  loading: false,
+  loading: true,
+  error: "",
 };
 
 export const weatherSlice = createSlice({
@@ -18,6 +19,9 @@ export const weatherSlice = createSlice({
         state.loading = true;
       })
       .addCase(getWeather.fulfilled, (state, action) => {
+        if (action.payload.cod === "404") {
+          state.error = "city not found";
+        }
         state.loading = false;
         state.weather = action.payload;
       })
@@ -26,7 +30,5 @@ export const weatherSlice = createSlice({
       });
   },
 });
-
-
 
 export default weatherSlice.reducer;
