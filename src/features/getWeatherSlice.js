@@ -5,7 +5,7 @@ export const getWeather = createAsyncThunk("/getWeather", getWeatherData);
 
 const initialState = {
   weather: {},
-  loading: true,
+  loading: false,
   error: "",
 };
 
