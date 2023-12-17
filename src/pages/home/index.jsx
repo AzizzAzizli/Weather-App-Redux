@@ -43,9 +43,9 @@ export const HomePage = () => {
    setIsKelvin((prev)=>!prev );
 }
 
-  // useEffect(() => {
-  //   dispatch(getWeather());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getWeather());
+  }, [dispatch]);
 
   return (
     <div className=" bg-blue-100 h-screen">
